@@ -6,7 +6,7 @@ import me.gotter.events.transports.BlackholeTransport;
  * Abstract hub that can attach event transports and send events to it
  * Does not return null if transport not set
  */
-public class AbstractHub implements Hub {
+public abstract class AbstractHub implements Hub {
 
     private Transport pipe;
 
@@ -26,6 +26,8 @@ public class AbstractHub implements Hub {
 
     @Override
     public void send(Event event) {
-        getEventTransport().send(event);
+        if (event != null) {
+            getEventTransport().send(event);
+        }
     }
 }
